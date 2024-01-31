@@ -9,9 +9,9 @@ a platform that allows users to create, edit, delete, and display their portfoli
 ## Features
 
 - Fullscreen mode
-- Portfolio Additions: Users can add portfolio details.
-- Portfolio Editing: Users can edit and update their portfolio information as needed. 
-- Portfolio Deletion: Users have the ability to delete portfolios that are no longer needed from the database.
+- Portfolio Additions: Users can add portfolio details
+- Portfolio Editing: Users can edit and update their portfolio information as needed
+- Portfolio Deletion: Users have the ability to delete portfolios that are no longer needed from the database
 
 ## Installation
 
