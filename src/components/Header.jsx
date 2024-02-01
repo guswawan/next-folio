@@ -11,10 +11,6 @@ export const Header = ({ children }) => {
     <header>
       <div className="hero bg-[#000017] pt-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          {/* <img
-            src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-            className="max-w-sm rounded-lg shadow-2xl"
-          /> */}
           <Image src={HeroImage} alt="hero-image" />
           <div className="">
             <Image src={LogoDevScale} alt="logo" />
@@ -44,7 +40,6 @@ export const Header = ({ children }) => {
                 </div>
               </div>
             </div>
-
             <Modal />
           </div>
         </div>

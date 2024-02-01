@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import fetch from 'node-fetch';
+import toast from 'react-hot-toast';
 
 export const CreateCard = () => {
   const router = useRouter();
@@ -10,61 +10,12 @@ export const CreateCard = () => {
   const [portfolio_url, setPortfolio_url] = useState('');
   const [social_account, setSocial_account] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-
-  // async function handleCreateNewCard() {
-  //   try {
-  //     // Unggah file gambar ke Cloudinary
-  //     const cloudinaryResponse = await uploadImageToCloudinary(thumbnail);
-  //     if (!cloudinaryResponse || !cloudinaryResponse.secure_url) {
-  //       console.error('Gagal mengunggah gambar ke Cloudinary');
-  //       return;
-  //     }
-
-  //     // Dapatkan URL gambar dari respons Cloudinary
-  //     const imageUrl = cloudinaryResponse.secure_url;
-
-  //     // Buat objek FormData untuk dikirim ke appbackend.io
-  //     const formData = new FormData();
-  //     formData.append('fullname', fullname);
-  //     formData.append(
-  //       'portfolio_url',
-  //       portfolio_url.startsWith('https://')
-  //         ? portfolio_url
-  //         : `https://${portfolio_url}`
-  //     );
-  //     formData.append('social_account', social_account);
-  //     formData.append('thumbnail', imageUrl); // Gunakan URL gambar dari Cloudinary
-
-  //     // Kirim permintaan POST ke appbackend.io
-  //     const response = await fetch(
-  //       'https://v1.appbackend.io/v1/rows/WrVw2ULDhVjl',
-  //       {
-  //         method: 'POST',
-  //         body: formData,
-  //       }
-  //     );
-
-  //     if (response.ok) {
-  //       const responseData = await response.json();
-  //       console.log('DATA SUBMIT', responseData);
-  //       // Reset nilai input setelah pengiriman berhasil
-  //       setFullname('');
-  //       setPortfolio_url('');
-  //       setSocial_account('');
-  //       // Refresh halaman
-  //       router.refresh();
-  //     } else {
-  //       console.error('Gagal melakukan POST:', response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error('Terjadi kesalahan:', error);
-  //   }
-  // }
+  const [_, setLoading] = useState(false);
 
   async function uploadImageToCloudinary(imageFile) {
     const formData = new FormData();
     formData.append('file', imageFile);
-    formData.append('upload_preset', 'xmncqgxf'); // Ganti dengan upload preset Anda
+    formData.append('upload_preset', 'xmncqgxf');
 
     const cloudinaryResponse = await fetch(
       'https://api.cloudinary.com/v1_1/asdfghj/image/upload',
@@ -82,6 +33,7 @@ export const CreateCard = () => {
   }
 
   async function handleCreateNewCard() {
+    setLoading(true);
     const cloudinaryResponse = await uploadImageToCloudinary(thumbnail);
     if (!cloudinaryResponse || !cloudinaryResponse.secure_url) {
       console.error('Gagal mengunggah gambar ke Cloudinary');
@@ -108,16 +60,22 @@ export const CreateCard = () => {
       ]),
     });
     const data = res.json();
-    console.log('DATA SUBMIT', data);
+
     setFullname('');
     setPortfolio_url('');
     setSocial_account('');
+
     router.refresh();
+    setLoading(false);
+
+    toast.success('Data added successfully!');
   }
 
   return (
     <div className="grid grid-cols-1 gap-8 m-auto max-w-xs p-2">
-      <h2 className="mb-4">Portfolio Submission</h2>
+      <h2 className="mb-3 font-semibold text-2xl m-auto">
+        Portfolio Submission
+      </h2>
       <input
         type="text"
         placeholder="Type your fullname"
@@ -148,7 +106,10 @@ export const CreateCard = () => {
         onChange={(e) => setThumbnail(e.target.files[0])}
         className="file-input file-input-bordered file-input-primary w-full max-w-xs"
       />
-      <button className="btn btn-primary mt-8" onClick={handleCreateNewCard}>
+      <button
+        className="btn btn-primary mt-8 disabled:cursor-wait"
+        onClick={handleCreateNewCard}
+      >
         Submit
       </button>
     </div>
