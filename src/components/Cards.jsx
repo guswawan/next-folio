@@ -7,10 +7,14 @@ export const Cards = ({ data }) => {
       <div className="p-6 w-[90%] text-white text-2xl font-medium">
         All Developers
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-8">
         {data.length !== 0 ? (
           data.map((item) => {
-            return <CardDetail key={item._id} item={item} />;
+            return (
+              <div key={item._id} className="flex justify-center items-center">
+                <CardDetail item={item} />
+              </div>
+            );
           })
         ) : (
           <h1>Belum ada data</h1>

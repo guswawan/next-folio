@@ -86,7 +86,7 @@ export const CardDetail = ({ item }) => {
   }
 
   return (
-    <div className="card w-96 glass relative cursor-pointer group items-center overflow-hidden justify-end duration-800 w-[380px] h-[278px]">
+    <div className="card lg:w-96 w-[80%] glass relative cursor-pointer group items-center overflow-hidden justify-end duration-800 lg:w-[380px] lg:h-[278px] h-[256px]">
       <div className=" absolute space-y-2 shadow-md opacity-100 right-2 top-2 rounded-lg p-2">
         <div
           className="opacity-20 hover:opacity-100 btn-ghost"

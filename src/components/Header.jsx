@@ -11,18 +11,18 @@ export const Header = ({ children }) => {
     <header>
       <div className="hero bg-[#000017] pt-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <Image src={HeroImage} alt="hero-image" />
+          <Image src={HeroImage} alt="hero-image" className="lg:block hidden" />
           <div className="">
             <Image src={LogoDevScale} alt="logo" />
-            <h1 className="text-5xl font-bold leading-snug tracking-wider text-white">
+            <h1 className="text-5xl font-bold leading-snug tracking-wider text-white text-wrap">
               {' '}
               Discover Devscale Top developer.
-              <span className="text-[#81808A]">
+              <span className="text-[#81808A] lg:block hidden">
                 Connect, inspire, and build together.
               </span>
             </h1>
             <div
-              className="bg-[#262736] border border-solid border-gray-500 rounded-xl p-4 mt-20  w-[80%]"
+              className="bg-[#262736] border border-solid border-gray-500 rounded-xl p-4 mt-20 lg:w-[80%]"
               onClick={() => document.getElementById('my_modal_4').showModal()}
             >
               <div className="flex items-center justify-between cursor-pointer overflow-hidden relative transition-all duration-300 hover:scale-x-95">

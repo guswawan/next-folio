@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const Footer = () => {
   return (
-    <footer className="footer py-10 px-40 bg-neutral text-neutral-content flex justify-between">
+    <footer className="footer py-10 lg:px-40 px-11 bg-neutral text-neutral-content lg:flex justify-between">
       <aside>
         <svg
           width="50"
